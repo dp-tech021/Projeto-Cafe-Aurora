@@ -22,9 +22,9 @@ test("navegação e seções principais", () => {
   assert.match(html, /lang="pt-BR"/);
 });
 
-test("as oito imagens possuem alt e arquivo WebP local", () => {
+test("as nove imagens possuem alt e arquivo local válido", () => {
   const imagens = [...html.matchAll(/<img\b[^>]*>/gs)];
-  assert.equal(imagens.length, 8);
+  assert.equal(imagens.length, 9);
   for (const imagem of imagens) {
     const src = imagem[0].match(/src="([^"]+)"/)?.[1];
     const alt = imagem[0].match(/alt="([^"]+)"/)?.[1];
@@ -33,9 +33,46 @@ test("as oito imagens possuem alt e arquivo WebP local", () => {
     const caminho = new URL("../" + src, import.meta.url);
     assert.ok(existsSync(caminho), "Imagem não encontrada: " + src);
     const dados = readFileSync(caminho);
-    assert.equal(dados.toString("ascii", 0, 4), "RIFF");
-    assert.equal(dados.toString("ascii", 8, 12), "WEBP");
+    if (src.endsWith(".png")) {
+      assert.equal(dados.subarray(0, 8).toString("hex"), "89504e470d0a1a0a");
+    } else {
+      assert.equal(dados.toString("ascii", 0, 4), "RIFF");
+      assert.equal(dados.toString("ascii", 8, 12), "WEBP");
+    }
   }
+});
+
+test("rodapé preserva direitos e apresenta autoria fictícia da D&P Technologies", () => {
+  const rodape = html.match(/<footer>[\s\S]*?<\/footer>/)?.[0] ?? "";
+  const logo = readFileSync(
+    new URL("../assets/images/logo-dp-technologies.png", import.meta.url)
+  );
+
+  assert.match(rodape, /src="assets\/images\/logo-dp-technologies\.png"/);
+  assert.match(
+    rodape,
+    /alt="D&amp;P Technologies — Desenvolvimento de software e websites"/
+  );
+  assert.equal(logo.readUInt32BE(16), 1254);
+  assert.equal(logo.readUInt32BE(20), 1254);
+  assert.match(rodape, /Desenvolvido por D&amp;P Technologies/);
+  assert.match(rodape, /Site desenvolvido por D&amp;P Technologies\./);
+  assert.match(rodape, /Rua da Inovação, 100 — Bairro Exemplo, São Paulo — SP/);
+  assert.match(rodape, /contato@dptechnologies\.example/);
+  assert.match(rodape, /\(11\) 90000-0000/);
+  assert.match(rodape, /@dptechnologies\.demo/);
+  assert.match(rodape, /não representam contatos reais/);
+  assert.match(rodape, /Café Aurora — Projeto fictício/);
+  assert.doesNotMatch(rodape, /href="(?:mailto:|tel:|https?:\/\/)/);
+});
+
+test("assinatura possui layout responsivo e logo sem corte", () => {
+  assert.match(css, /\.assinatura-dp-logo img\s*\{[\s\S]*?height:\s*auto;/);
+  assert.match(css, /\.assinatura-dp-logo img\s*\{[\s\S]*?object-fit:\s*contain;/);
+  assert.match(
+    css,
+    /@media \(min-width: 40rem\)[\s\S]*?\.assinatura-dp\s*\{[\s\S]*?grid-template-columns:/
+  );
 });
 
 test("as seis galerias declaram três imagens locais na ordem do manifesto", () => {

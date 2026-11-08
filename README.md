@@ -136,6 +136,14 @@ em uma grade responsiva, com uma foto, nome, preço e descrição por produto.
 O Café Aurora é um projeto fictício criado exclusivamente para fins de estudo e
 portfólio. Os nomes, o endereço e os dados de contato são demonstrativos.
 
+## Crédito de desenvolvimento
+
+Site desenvolvido por **D&P Technologies**, com atuação em desenvolvimento de
+software, integração de sistemas e manutenção de websites. A assinatura de
+autoria aparece no rodapé sem substituir os direitos autorais do Café Aurora.
+O endereço, email, telefone e perfil social apresentados nessa assinatura são
+dados fictícios criados exclusivamente para este portfólio.
+
 
 ## Ferramentas de desenvolvimento e colaboração
 
