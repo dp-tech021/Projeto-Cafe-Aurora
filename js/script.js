@@ -206,7 +206,14 @@ function iniciarGaleria(galeria) {
     .split("|")
     .filter(Boolean)
     .slice(0, 5)
-    .map((caminho) => imagensComplementares[caminho] || caminho);
+    .map((caminho, indice) => {
+      // O Vite resolve o src inicial do HTML para o asset gerado no build.
+      // Não sobrescreva esse URL por um caminho de desenvolvimento.
+      if (indice === 0) {
+        return imagem.src || caminho;
+      }
+      return imagensComplementares[caminho] || caminho;
+    });
   const textosAlternativos = (galeria.dataset.alts || "").split("|").slice(0, 5);
   let indiceAtual = 0;
 
