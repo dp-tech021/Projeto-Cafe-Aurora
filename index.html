@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Café Aurora</title>
+    <link rel="icon" href="data:,">
     <link rel="stylesheet" href="css/style.css">
-    <script type="module" src="/js/script.js"></script>
+    <script type="module" src="./js/script.js"></script>
   </head>
   <body>
+    <a class="pular-conteudo" href="#conteudo-principal">Pular para o conteúdo</a>
     <header class="cabecalho">
       <div class="container">
         <a class="marca" href="#inicio">Café Aurora</a>
@@ -22,35 +24,191 @@
       </div>
     </header>
 
-    <main>
+    <main id="conteudo-principal">
       <section id="inicio" class="destaque">
         <div class="container">
-          <p class="chamada">Uma pausa acolhedora no seu dia</p>
-          <h1>Café fresco e bons encontros</h1>
-          <p>
-            Bem-vindo ao Café Aurora, um espaço fictício criado para celebrar
-            sabores simples, conversas tranquilas e manhãs especiais.
-          </p>
-          <a class="botao" href="#cardapio">Conheça o cardápio</a>
+          <div class="destaque-conteudo">
+            <p class="chamada">Uma pausa acolhedora no seu dia</p>
+            <h1>Café fresco e bons encontros</h1>
+            <p>
+              Bem-vindo ao Café Aurora, um espaço fictício criado para celebrar
+              sabores simples, conversas tranquilas e manhãs especiais.
+            </p>
+            <a class="botao" href="#cardapio">Conheça o cardápio</a>
+          </div>
+          <img
+            class="destaque-imagem"
+            src="assets/images/hero-cafe.webp"
+            alt="Xícara de café sobre uma mesa de madeira"
+            width="1200"
+            height="900"
+            decoding="async"
+            fetchpriority="high"
+          >
         </div>
       </section>
 
       <section id="cardapio">
         <div class="container">
           <h2>Cardápio</h2>
-          <p>Algumas sugestões demonstrativas da nossa cafeteria:</p>
+          <p>
+            Sabores fictícios pensados para diferentes momentos do seu dia.
+            Valores meramente ilustrativos.
+          </p>
+          <div
+            class="filtros-cardapio"
+            role="group"
+            aria-label="Filtrar produtos por categoria"
+            hidden
+          >
+            <button
+              class="filtro-cardapio ativo"
+              type="button"
+              data-filtro="todos"
+              aria-pressed="true"
+            >
+              Todos
+            </button>
+            <button
+              class="filtro-cardapio"
+              type="button"
+              data-filtro="cafes"
+              aria-pressed="false"
+            >
+              Cafés
+            </button>
+            <button
+              class="filtro-cardapio"
+              type="button"
+              data-filtro="gelados"
+              aria-pressed="false"
+            >
+              Gelados
+            </button>
+            <button
+              class="filtro-cardapio"
+              type="button"
+              data-filtro="sobremesas"
+              aria-pressed="false"
+            >
+              Sobremesas
+            </button>
+          </div>
+          <p class="resultado-cardapio" aria-live="polite" aria-atomic="true" hidden></p>
           <div class="itens-cardapio">
-            <article>
-              <h3>Café coado</h3>
-              <p>Café preparado na hora, com aroma marcante e sabor equilibrado.</p>
+            <article data-categoria="cafes">
+              <img
+                class="produto-imagem"
+                src="assets/images/cafe-coado.webp"
+                alt="Café sendo preparado em filtro sobre uma jarra"
+                width="720"
+                height="540"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="produto-conteudo">
+                <div class="produto-cabecalho">
+                  <h3>Café coado</h3>
+                  <p class="produto-preco">R$ 8,00</p>
+                </div>
+                <p class="produto-categoria">Cafés</p>
+                <p>Grãos de torra média preparados na hora, com sabor equilibrado.</p>
+              </div>
             </article>
-            <article>
-              <h3>Capuccino da casa</h3>
-              <p>Espresso, leite cremoso e um toque suave de canela.</p>
+            <article data-categoria="cafes">
+              <img
+                class="produto-imagem"
+                src="assets/images/cappuccino.webp"
+                alt="Xícara de cappuccino com desenho feito na espuma"
+                width="720"
+                height="540"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="produto-conteudo">
+                <div class="produto-cabecalho">
+                  <h3>Cappuccino Aurora</h3>
+                  <p class="produto-preco">R$ 14,00</p>
+                </div>
+                <p class="produto-categoria">Cafés</p>
+                <p>Espresso, leite cremoso, cacau e um toque suave de canela.</p>
+              </div>
             </article>
-            <article>
-              <h3>Bolo do dia</h3>
-              <p>Uma fatia de bolo caseiro para acompanhar sua bebida favorita.</p>
+            <article data-categoria="gelados">
+              <img
+                class="produto-imagem"
+                src="assets/images/cold-brew.webp"
+                alt="Bebida de café gelada com uma rodela de limão"
+                width="720"
+                height="540"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="produto-conteudo">
+                <div class="produto-cabecalho">
+                  <h3>Cold brew cítrico</h3>
+                  <p class="produto-preco">R$ 16,00</p>
+                </div>
+                <p class="produto-categoria">Gelados</p>
+                <p>Café extraído a frio com laranja e água com gás.</p>
+              </div>
+            </article>
+            <article data-categoria="gelados">
+              <img
+                class="produto-imagem"
+                src="assets/images/chocolate-gelado.webp"
+                alt="Bebida gelada de chocolate com cobertura cremosa"
+                width="720"
+                height="540"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="produto-conteudo">
+                <div class="produto-cabecalho">
+                  <h3>Chocolate gelado</h3>
+                  <p class="produto-preco">R$ 15,00</p>
+                </div>
+                <p class="produto-categoria">Gelados</p>
+                <p>Bebida cremosa de cacau com leite e gelo.</p>
+              </div>
+            </article>
+            <article data-categoria="sobremesas">
+              <img
+                class="produto-imagem"
+                src="assets/images/bolo-cenoura.webp"
+                alt="Bolo de cenoura com cobertura de chocolate"
+                width="720"
+                height="540"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="produto-conteudo">
+                <div class="produto-cabecalho">
+                  <h3>Bolo de cenoura</h3>
+                  <p class="produto-preco">R$ 12,00</p>
+                </div>
+                <p class="produto-categoria">Sobremesas</p>
+                <p>Fatia de bolo macio com cobertura delicada de chocolate.</p>
+              </div>
+            </article>
+            <article data-categoria="sobremesas">
+              <img
+                class="produto-imagem"
+                src="assets/images/torta-cacau.webp"
+                alt="Fatia de bolo de chocolate servida em um prato"
+                width="720"
+                height="540"
+                loading="lazy"
+                decoding="async"
+              >
+              <div class="produto-conteudo">
+                <div class="produto-cabecalho">
+                  <h3>Torta de cacau</h3>
+                  <p class="produto-preco">R$ 14,00</p>
+                </div>
+                <p class="produto-categoria">Sobremesas</p>
+                <p>Fatia de torta cremosa com base crocante e cacau.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -58,12 +216,26 @@
 
       <section id="sobre" class="secao-alternativa">
         <div class="container">
-          <h2>Sobre</h2>
-          <p>
-            O Café Aurora é uma cafeteria fictícia criada como projeto de
-            portfólio. A proposta é apresentar uma experiência simples,
-            acolhedora e fácil de usar, construída com tecnologias da web.
-          </p>
+          <div class="sobre-conteudo">
+            <h2>Sobre</h2>
+            <p>
+              O Café Aurora é uma cafeteria fictícia criada como projeto de
+              portfólio. A proposta é apresentar uma experiência simples,
+              acolhedora e fácil de usar, construída com tecnologias da web.
+            </p>
+          </div>
+          <figure class="sobre-figura">
+            <img
+              class="sobre-imagem"
+              src="assets/images/ambiente-cafe.webp"
+              alt="Interior iluminado de uma cafeteria com mesas, cadeiras e plantas"
+              width="960"
+              height="720"
+              loading="lazy"
+              decoding="async"
+            >
+            <figcaption>Ambiente de cafeteria usado apenas como ilustração.</figcaption>
+          </figure>
         </div>
       </section>
 

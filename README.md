@@ -1,14 +1,38 @@
 # Café Aurora
 
-Site demonstrativo de uma cafeteria fictícia, desenvolvido como projeto de portfólio com HTML5, CSS3 e JavaScript puro. O Vite é usado somente como servidor de desenvolvimento e ferramenta de build. Não há React nem TypeScript nesta etapa porque o site já existia nessa stack.
+Site demonstrativo de uma cafeteria fictícia, desenvolvido como projeto de
+portfólio com HTML5, CSS3 e JavaScript puro.
 
-## Pré-requisitos
+## Objetivo
 
-- Node.js 20.19+ ou 22.12+ (recomendado Node 22 atual).
-- npm (distribuído com o Node.js).
-- Git.
+Apresentar uma página institucional simples e semântica com informações sobre
+a cafeteria, sugestões de cardápio, uma breve apresentação e dados de contato
+demonstrativos.
 
-## Instalação e execução
+## Estrutura do projeto
+
+```text
+Projeto-Cafe-Aurora/
+├── assets/
+│   ├── images/
+│   └── IMAGES.md
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   └── script.js
+└── README.md
+```
+
+- `index.html`: estrutura e conteúdo principal do site.
+- `assets/images/`: fotografias locais otimizadas no formato WebP.
+- `assets/IMAGES.md`: créditos, origem e licença de cada fotografia.
+- `css/style.css`: identidade visual, layout responsivo e estados de interação.
+- `js/script.js`: filtros do cardápio e atualização automática do ano do rodapé.
+
+## Como abrir localmente
+
+Instale Node.js 20.19+ ou 22.12+, npm e Git. Em um terminal:
 
 ```bash
 git clone https://github.com/dp-tech021/Projeto-Cafe-Aurora.git
@@ -17,45 +41,73 @@ npm install
 npm run dev
 ```
 
-Abra o endereço local indicado pelo Vite (normalmente `http://localhost:5173`).
+Abra a URL exibida no terminal (normalmente `http://localhost:5173`). Como o JavaScript é carregado como módulo, não use `file://` para conferir a versão com Vite.
 
-## Testes e build
+## Decisões de design e responsividade
+
+- A interface segue uma abordagem **mobile-first**: os estilos base atendem
+  telas pequenas e os breakpoints de `40rem` e `64rem` ampliam o layout de
+  forma progressiva.
+- A paleta usa tons de café, creme, bege e verde-escuro. As cores, os
+  espaçamentos, os raios e as sombras ficam centralizados em variáveis CSS para
+  manter consistência e facilitar futuras alterações.
+- Flexbox organiza o cabeçalho e a navegação, enquanto CSS Grid distribui os
+  cards do cardápio e o conteúdo da seção de contato em telas maiores.
+- Os títulos usam uma pilha de fontes serifadas do sistema e o texto usa fontes
+  sem serifa, sem baixar arquivos ou depender de serviços externos.
+- Links possuem foco visível e a página oferece um atalho “Pular para o
+  conteúdo” para facilitar a navegação por teclado.
+- Rolagem suave e transições são aplicadas apenas quando o navegador informa
+  que o usuário não solicitou redução de movimento.
+- Elementos flexíveis, quebras de texto e colunas com largura mínima zero
+  evitam rolagem horizontal em telas estreitas.
+- O hero e a seção Sobre usam duas colunas apenas em telas amplas. Em telas
+  menores, texto e fotografia são empilhados para preservar a leitura.
+
+## Imagens
+
+As oito fotografias são recursos locais em WebP e têm finalidade meramente
+ilustrativa. Elas foram redimensionadas e comprimidas para reduzir o tempo de
+carregamento, sem depender de servidores externos. As imagens abaixo da dobra
+usam carregamento tardio; a imagem principal é priorizada por fazer parte do
+conteúdo inicial da página.
+
+As fontes, autores, links originais e condições de uso estão registrados em
+[`assets/IMAGES.md`](assets/IMAGES.md). As fotografias não representam um
+estabelecimento, produtos ou instalações reais do Café Aurora, que é fictício.
+
+## Filtros do cardápio
+
+O cardápio contém seis produtos demonstrativos distribuídos entre cafés,
+bebidas geladas e sobremesas. Os botões **Todos**, **Cafés**, **Gelados** e
+**Sobremesas** filtram os cards no navegador, sem recarregar a página.
+
+O JavaScript identifica cada produto pelo atributo `data-categoria`, alterna o
+atributo `hidden` dos cards e atualiza `aria-pressed` para comunicar qual botão
+está ativo. Uma região com `aria-live` também informa quantos produtos estão
+visíveis após cada seleção. Os eventos ficam centralizados no grupo de filtros
+para evitar repetição de código.
+
+Os seis produtos fazem parte do HTML. Os controles de filtro começam ocultos e
+só aparecem depois que o JavaScript é inicializado; assim, se o script não
+carregar, o cardápio completo continua disponível e legível.
+
+## Aviso
+
+O Café Aurora é um projeto fictício criado exclusivamente para fins de estudo e
+portfólio. Os nomes, o endereço e os dados de contato são demonstrativos.
+
+
+## Ferramentas de desenvolvimento e colaboração
+
+O site continua em HTML, CSS e JavaScript puro; **Vite 8.3.6** serve apenas para desenvolver e gerar a versão estática. Não há React ou TypeScript. Não são necessários serviços pagos.
 
 ```bash
-npm test
-npm run build
-npm run preview
+npm test        # testes de navegação, imagens e filtros
+npm run build   # gera a pasta dist/ com os arquivos para publicação
+npm run preview # abre a versão de produção localmente
 ```
 
-- `npm test`: verifica a navegação básica e a atualização do ano do rodapé.
-- `npm run build`: gera a versão estática em `dist/`.
-- `npm run preview`: permite conferir localmente a saída de produção.
-- `dist/` e `node_modules/` não devem ser enviados ao Git.
-- Ainda não há lockfile porque não foi possível instalar dependências no ambiente que preparou esta alteração. Execute `npm install` em um ambiente com acesso ao npm, revise e versione o `package-lock.json` em PR antes de substituir `npm install` por `npm ci` na CI.
+O build utiliza caminhos relativos para funcionar em hospedagem sob subdiretórios, como GitHub Pages. As verificações de teste e build também são executadas pelo workflow em `.github/workflows/validate.yml` quando habilitado. Consultem `AGENTS.md` para o fluxo em dupla.
 
-## Estrutura
-
-```text
-Projeto-Cafe-Aurora/
-├── .github/workflows/validate.yml  # Testes e build no GitHub Actions
-├── css/style.css                  # Aparência da página
-├── js/script.js                   # Comportamento simples
-├── tests/site.test.mjs            # Testes automáticos com Node
-├── index.html                     # Estrutura da página
-├── package.json                   # Scripts e Vite
-├── .gitignore                     # Arquivos locais ignorados
-├── AGENTS.md                      # Regras para a dupla e os Codex
-└── README.md
-```
-
-## Objetivo e conteúdo
-
-Página institucional simples com apresentação, cardápio, seção Sobre e contato fictício. As informações da cafeteria são demonstrativas e não há serviço real.
-
-## Fluxo de colaboração
-
-Cada desenvolvedor utiliza sua própria branch e sessão Codex. Abrir Pull Request para `main`, solicitar revisão do outro desenvolvedor e verificar testes e build antes de integrar. Consultar [AGENTS.md](AGENTS.md) para regras completas.
-
-## Próximas evoluções
-
-A dupla pode avaliar React + TypeScript futuramente caso haja uma necessidade concreta de componentes interativos e estado complexo. Evitar migrar apenas por preferência tecnológica.
+**Pendência:** esta etapa ainda não possui `package-lock.json`, pois a instalação npm não pôde ser executada no ambiente de preparação. O CI usa `npm install`; façam uma instalação em uma máquina conectada e versionem o lockfile em um PR posterior. Até lá, as dependências transitivas não estão totalmente fixadas.
