@@ -50,7 +50,8 @@ a {
   text-underline-offset: 0.2em;
 }
 
-a:focus-visible {
+a:focus-visible,
+button:focus-visible {
   outline: 0.2rem solid var(--cor-foco);
   outline-offset: 0.2rem;
   border-radius: 0.2rem;
@@ -196,6 +197,9 @@ h2::after {
 
 .destaque .container {
   position: relative;
+  display: grid;
+  gap: var(--espaco-5);
+  align-items: center;
 }
 
 .destaque h1 {
@@ -243,6 +247,22 @@ h2::after {
   background-color: transparent;
 }
 
+.destaque-imagem,
+.produto-imagem,
+.sobre-imagem {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.destaque-imagem {
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: var(--raio-medio);
+  box-shadow: 0 1.25rem 3rem rgb(0 0 0 / 28%);
+}
+
 #cardapio {
   background-color: var(--cor-creme-50);
 }
@@ -254,6 +274,48 @@ h2::after {
   color: var(--cor-texto-suave);
 }
 
+.filtros-cardapio {
+  display: flex;
+  gap: var(--espaco-2);
+  flex-wrap: wrap;
+  margin-top: var(--espaco-5);
+}
+
+.filtros-cardapio[hidden],
+.resultado-cardapio[hidden] {
+  display: none;
+}
+
+.filtro-cardapio {
+  min-height: 2.75rem;
+  padding: var(--espaco-1) var(--espaco-3);
+  color: var(--cor-verde-900);
+  background-color: var(--cor-branco);
+  border: 2px solid var(--cor-verde-700);
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.filtro-cardapio:hover {
+  background-color: var(--cor-creme-100);
+}
+
+.filtro-cardapio.ativo {
+  color: var(--cor-branco);
+  background-color: var(--cor-verde-900);
+  border-color: var(--cor-verde-900);
+}
+
+.resultado-cardapio {
+  min-height: 1.7em;
+  margin: var(--espaco-3) 0 0;
+  color: var(--cor-texto-suave);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
 .itens-cardapio {
   display: grid;
   grid-template-columns: 1fr;
@@ -263,12 +325,19 @@ h2::after {
 
 .itens-cardapio article {
   position: relative;
-  padding: var(--espaco-5);
   overflow: hidden;
   background-color: var(--cor-branco);
   border: 1px solid #eadcc9;
   border-radius: var(--raio-medio);
   box-shadow: var(--sombra-suave);
+}
+
+.produto-imagem {
+  border-bottom: 1px solid #eadcc9;
+}
+
+.produto-conteudo {
+  padding: var(--espaco-5);
 }
 
 .itens-cardapio article::before {
@@ -279,8 +348,19 @@ h2::after {
   content: "";
 }
 
+.itens-cardapio article[hidden] {
+  display: none;
+}
+
+.produto-cabecalho {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--espaco-3);
+}
+
 .itens-cardapio h3 {
-  margin: 0 0 var(--espaco-2);
+  margin: 0;
   color: var(--cor-cafe-800);
   font-size: 1.4rem;
 }
@@ -290,16 +370,56 @@ h2::after {
   color: var(--cor-texto-suave);
 }
 
+.itens-cardapio .produto-preco {
+  flex: 0 0 auto;
+  color: var(--cor-verde-900);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.itens-cardapio .produto-categoria {
+  display: inline-block;
+  margin-block: var(--espaco-3);
+  padding: 0.15rem var(--espaco-2);
+  color: var(--cor-verde-900);
+  background-color: var(--cor-creme-100);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .secao-alternativa {
   background-color: var(--cor-creme-100);
   background-image: linear-gradient(135deg, transparent 65%, rgb(223 201 170 / 25%));
 }
 
 .secao-alternativa .container {
+  display: grid;
+  gap: var(--espaco-5);
   padding: var(--espaco-5);
   background-color: rgb(255 250 242 / 72%);
   border-left: 0.3rem solid var(--cor-verde-700);
   border-radius: 0 var(--raio-medio) var(--raio-medio) 0;
+}
+
+.sobre-figura {
+  margin: 0;
+  overflow: hidden;
+  background-color: var(--cor-branco);
+  border-radius: var(--raio-medio);
+  box-shadow: var(--sombra-suave);
+}
+
+.sobre-imagem {
+  border-bottom: 1px solid var(--cor-bege-300);
+}
+
+.sobre-figura figcaption {
+  padding: var(--espaco-2) var(--espaco-3);
+  color: var(--cor-texto-suave);
+  font-size: 0.82rem;
 }
 
 #sobre p {
@@ -385,11 +505,18 @@ footer p {
     min-height: 40rem;
   }
 
+  .destaque .container {
+    grid-template-columns: minmax(0, 1.05fr) minmax(24rem, 0.95fr);
+    gap: var(--espaco-7);
+  }
+
   .itens-cardapio {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .secao-alternativa .container {
+    grid-template-columns: minmax(0, 0.9fr) minmax(24rem, 1.1fr);
+    align-items: center;
     padding: var(--espaco-7);
   }
 
@@ -417,7 +544,8 @@ footer p {
   }
 
   .botao,
-  .menu a {
+  .menu a,
+  .filtro-cardapio {
     transition:
       color 180ms ease,
       background-color 180ms ease,
