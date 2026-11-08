@@ -16,6 +16,10 @@ Projeto-Cafe-Aurora/
 ├── assets/
 │   ├── images/
 │   └── IMAGES.md
+├── docs/
+│   └── HOMOLOGACAO.md
+├── package.json
+├── package-lock.json
 ├── index.html
 ├── css/
 │   └── style.css
@@ -37,7 +41,7 @@ Instale Node.js 20.19+ ou 22.12+, npm e Git. Em um terminal:
 ```bash
 git clone https://github.com/dp-tech021/Projeto-Cafe-Aurora.git
 cd Projeto-Cafe-Aurora
-npm install
+npm ci
 npm run dev
 ```
 
@@ -110,4 +114,21 @@ npm run preview # abre a versão de produção localmente
 
 O build utiliza caminhos relativos para funcionar em hospedagem sob subdiretórios, como GitHub Pages. As verificações de teste e build também são executadas pelo workflow em `.github/workflows/validate.yml` quando habilitado. Consultem `AGENTS.md` para o fluxo em dupla.
 
-**Pendência:** esta etapa ainda não possui `package-lock.json`, pois a instalação npm não pôde ser executada no ambiente de preparação. O CI usa `npm install`; façam uma instalação em uma máquina conectada e versionem o lockfile em um PR posterior. Até lá, as dependências transitivas não estão totalmente fixadas.
+O arquivo `package-lock.json` foi gerado com npm no GitHub Actions e versionado, fixando as dependências transitivas. Para instalações reproduzíveis, utilize `npm ci`, inclusive na CI. Se alterar dependências, execute `npm install` e inclua a atualização do lockfile no mesmo PR.
+
+## CI e publicação
+
+- `.github/workflows/validate.yml`: valida pushes na `main`, branches de trabalho e PRs, executando `npm ci`, `npm test` e `npm run build`.
+- `.github/workflows/deploy-pages.yml`: após integração na `main`, executa testes, gera `dist/` e publica pelo GitHub Pages.
+- A instalação e o build não exigem credenciais, serviços pagos ou variáveis secretas.
+
+**Para habilitar a publicação**, um administrador deve acessar [Settings → Pages](https://github.com/dp-tech021/Projeto-Cafe-Aurora/settings/pages), selecionar **GitHub Actions** como fonte e conferir as permissões do Actions. Um PR não publica o site automaticamente: o deploy inicia após merge na `main`.
+
+Depois de publicar, confira em [Actions](https://github.com/dp-tech021/Projeto-Cafe-Aurora/actions) a URL real fornecida pelo deploy e inclua-a aqui. Não presuma que a página está no ar antes de verificar.
+
+## Homologação e colaboração
+
+Sigam [docs/HOMOLOGACAO.md](docs/HOMOLOGACAO.md) para validar visualmente as larguras 360/768/1440 px, filtros, navegação por teclado, imagens, console e página pública. O checklist manual deve registrar evidências antes de considerar o site concluído.
+
+**Importante:** a `main` precisa ser protegida manualmente em [Settings → Branches](https://github.com/dp-tech021/Projeto-Cafe-Aurora/settings/branches), com exigência de PR, status de CI e aprovação da outra pessoa. Cada desenvolvedor deve usar sua própria conta GitHub para que a revisão seja independente.
+
