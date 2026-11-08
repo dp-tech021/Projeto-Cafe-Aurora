@@ -28,7 +28,7 @@ Projeto-Cafe-Aurora/
 - `assets/images/`: fotografias locais otimizadas no formato WebP.
 - `assets/IMAGES.md`: créditos, origem e licença de cada fotografia.
 - `css/style.css`: identidade visual, layout responsivo e estados de interação.
-- `js/script.js`: filtros do cardápio e atualização automática do ano do rodapé.
+- `js/script.js`: carrossel, filtros do cardápio e atualização automática do ano do rodapé.
 
 ## Como abrir localmente
 
@@ -51,8 +51,9 @@ Abra a URL exibida no terminal (normalmente `http://localhost:5173`). Como o Jav
 - A paleta usa tons de café, creme, bege e verde-escuro. As cores, os
   espaçamentos, os raios e as sombras ficam centralizados em variáveis CSS para
   manter consistência e facilitar futuras alterações.
-- Flexbox organiza o cabeçalho e a navegação, enquanto CSS Grid distribui os
-  cards do cardápio e o conteúdo da seção de contato em telas maiores.
+- Flexbox organiza o cabeçalho, a navegação e o carrossel, enquanto CSS Grid
+  mantém a lista do cardápio sem JavaScript e distribui o conteúdo da seção de
+  contato em telas maiores.
 - Os títulos usam uma pilha de fontes serifadas do sistema e o texto usa fontes
   sem serifa, sem baixar arquivos ou depender de serviços externos.
 - Links possuem foco visível e a página oferece um atalho “Pular para o
@@ -76,21 +77,45 @@ As fontes, autores, links originais e condições de uso estão registrados em
 [`assets/IMAGES.md`](assets/IMAGES.md). As fotografias não representam um
 estabelecimento, produtos ou instalações reais do Café Aurora, que é fictício.
 
-## Filtros do cardápio
+## Carrossel e filtros do cardápio
 
 O cardápio contém seis produtos demonstrativos distribuídos entre cafés,
 bebidas geladas e sobremesas. Os botões **Todos**, **Cafés**, **Gelados** e
 **Sobremesas** filtram os cards no navegador, sem recarregar a página.
 
+Com JavaScript disponível, os produtos formam um carrossel horizontal com
+rolagem nativa, `scroll-snap` e botões **Anterior** e **Próximo**. Cada comando
+avança um produto; as setas ficam desabilitadas nos extremos. A largura dos
+cards permite visualizar um item no celular, dois no tablet e três no desktop.
+Em telas sensíveis ao toque, a própria área do cardápio aceita o gesto de
+deslizar. O carrossel não usa rotação automática nem bibliotecas externas e
+respeita a preferência por movimento reduzido do sistema.
+
 O JavaScript identifica cada produto pelo atributo `data-categoria`, alterna o
 atributo `hidden` dos cards e atualiza `aria-pressed` para comunicar qual botão
 está ativo. Uma região com `aria-live` também informa quantos produtos estão
-visíveis após cada seleção. Os eventos ficam centralizados no grupo de filtros
-para evitar repetição de código.
+visíveis após cada seleção. Ao trocar de categoria, o carrossel retorna ao
+primeiro produto e recalcula os estados das setas; cards ocultos deixam de
+ocupar espaço e não participam da navegação. Os eventos dos filtros ficam
+centralizados no grupo de botões para evitar repetição de código.
 
 Os seis produtos fazem parte do HTML. Os controles de filtro começam ocultos e
-só aparecem depois que o JavaScript é inicializado; assim, se o script não
-carregar, o cardápio completo continua disponível e legível.
+só aparecem depois que o JavaScript é inicializado; o mesmo vale para os
+controles do carrossel. Assim, se o script não carregar, o cardápio completo
+continua disponível e legível em uma lista ou grade responsiva.
+
+## Como testar o cardápio
+
+1. Execute `npm install`, `npm test` e `npm run build`.
+2. Inicie o site com `npm run dev` e abra a URL indicada pelo Vite.
+3. Em aproximadamente 1440 px, 768 px e 375 px, confira respectivamente até
+   três, dois e um card por vez; navegue até os dois extremos.
+4. Teste todas as categorias, conferindo as contagens 6, 2, 2 e 2 e o retorno
+   ao primeiro item depois de cada troca.
+5. Em uma tela sensível ao toque ou na emulação móvel do navegador, deslize a
+   lista horizontalmente. Use também Tab, Enter e Espaço nos controles.
+6. Ative `prefers-reduced-motion`, confira o console e desabilite o JavaScript
+   para verificar a grade completa como alternativa progressiva.
 
 ## Aviso
 
@@ -108,6 +133,4 @@ npm run build   # gera a pasta dist/ com os arquivos para publicação
 npm run preview # abre a versão de produção localmente
 ```
 
-O build utiliza caminhos relativos para funcionar em hospedagem sob subdiretórios, como GitHub Pages. As verificações de teste e build também são executadas pelo workflow em `.github/workflows/validate.yml` quando habilitado. Consultem `AGENTS.md` para o fluxo em dupla.
-
-**Pendência:** esta etapa ainda não possui `package-lock.json`, pois a instalação npm não pôde ser executada no ambiente de preparação. O CI usa `npm install`; façam uma instalação em uma máquina conectada e versionem o lockfile em um PR posterior. Até lá, as dependências transitivas não estão totalmente fixadas.
+O build utiliza caminhos relativos para funcionar em hospedagem sob subdiretórios, como GitHub Pages. As verificações de teste e build também são executadas pelo workflow em `.github/workflows/validate.yml` quando habilitado. Consultem `AGENTS.md` para o fluxo em dupla. O `package-lock.json` versionado fixa as dependências transitivas; em ambientes de CI, prefira `npm ci`.

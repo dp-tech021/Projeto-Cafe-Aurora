@@ -95,8 +95,34 @@
             </button>
           </div>
           <p class="resultado-cardapio" aria-live="polite" aria-atomic="true" hidden></p>
-          <div class="itens-cardapio">
-            <article data-categoria="cafes">
+          <div
+            class="carrossel-cardapio"
+            role="region"
+            aria-roledescription="carrossel"
+            aria-label="Produtos do cardápio"
+          >
+            <div class="controles-carrossel" hidden>
+              <button
+                class="controle-carrossel controle-anterior"
+                type="button"
+                aria-label="Exibir produto anterior"
+                aria-controls="lista-cardapio"
+              >
+                <span aria-hidden="true">←</span>
+                Anterior
+              </button>
+              <button
+                class="controle-carrossel controle-proximo"
+                type="button"
+                aria-label="Exibir próximo produto"
+                aria-controls="lista-cardapio"
+              >
+                Próximo
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+            <div class="itens-cardapio" id="lista-cardapio" role="list">
+            <article data-categoria="cafes" role="listitem">
               <img
                 class="produto-imagem"
                 src="assets/images/cafe-coado.webp"
@@ -115,7 +141,7 @@
                 <p>Grãos de torra média preparados na hora, com sabor equilibrado.</p>
               </div>
             </article>
-            <article data-categoria="cafes">
+            <article data-categoria="cafes" role="listitem">
               <img
                 class="produto-imagem"
                 src="assets/images/cappuccino.webp"
@@ -134,7 +160,7 @@
                 <p>Espresso, leite cremoso, cacau e um toque suave de canela.</p>
               </div>
             </article>
-            <article data-categoria="gelados">
+            <article data-categoria="gelados" role="listitem">
               <img
                 class="produto-imagem"
                 src="assets/images/cold-brew.webp"
@@ -153,7 +179,7 @@
                 <p>Café extraído a frio com laranja e água com gás.</p>
               </div>
             </article>
-            <article data-categoria="gelados">
+            <article data-categoria="gelados" role="listitem">
               <img
                 class="produto-imagem"
                 src="assets/images/chocolate-gelado.webp"
@@ -172,7 +198,7 @@
                 <p>Bebida cremosa de cacau com leite e gelo.</p>
               </div>
             </article>
-            <article data-categoria="sobremesas">
+            <article data-categoria="sobremesas" role="listitem">
               <img
                 class="produto-imagem"
                 src="assets/images/bolo-cenoura.webp"
@@ -191,7 +217,7 @@
                 <p>Fatia de bolo macio com cobertura delicada de chocolate.</p>
               </div>
             </article>
-            <article data-categoria="sobremesas">
+            <article data-categoria="sobremesas" role="listitem">
               <img
                 class="produto-imagem"
                 src="assets/images/torta-cacau.webp"
@@ -210,6 +236,7 @@
                 <p>Fatia de torta cremosa com base crocante e cacau.</p>
               </div>
             </article>
+            </div>
           </div>
         </div>
       </section>

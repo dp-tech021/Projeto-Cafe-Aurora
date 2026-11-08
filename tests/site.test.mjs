@@ -30,6 +30,15 @@ test("as oito imagens possuem alt e arquivo WebP local", () => {
   }
 });
 
+test("estrutura do carrossel preserva os seis produtos e a alternativa sem JavaScript", () => {
+  assert.equal([...html.matchAll(/<article\b[^>]*data-categoria=/g)].length, 6);
+  assert.match(html, /class="controles-carrossel" hidden/);
+  assert.match(html, /class="controle-carrossel controle-anterior"/);
+  assert.match(html, /class="controle-carrossel controle-proximo"/);
+  assert.match(html, /aria-controls="lista-cardapio"/);
+  assert.match(html, /id="lista-cardapio" role="list"/);
+});
+
 test("atualização do ano e filtros sem recarregar a página", () => {
   const categorias = ["cafes", "cafes", "gelados", "gelados", "sobremesas", "sobremesas"];
   const produtos = categorias.map((categoria) => ({ dataset: { categoria }, hidden: false }));
@@ -79,4 +88,90 @@ test("atualização do ano e filtros sem recarregar a página", () => {
     assert.equal(botao.attributes["aria-pressed"], "true");
     assert.equal(botoes.filter((b) => b.attributes["aria-pressed"] === "true").length, 1);
   }
+});
+
+test("carrossel navega um produto, limita os extremos e reinicia ao filtrar", () => {
+  const categorias = ["cafes", "cafes", "gelados", "gelados", "sobremesas", "sobremesas"];
+  const lista = {
+    clientWidth: 100,
+    offsetLeft: 0,
+    scrollLeft: 0,
+    eventos: {},
+    get scrollWidth() {
+      return produtos.filter((produto) => !produto.hidden).length * 100;
+    },
+    addEventListener(evento, callback) { this.eventos[evento] = callback; },
+    getBoundingClientRect() { return { left: 0 }; },
+    scrollTo({ left }) {
+      this.scrollLeft = left;
+      this.eventos.scroll?.();
+    }
+  };
+  const produtos = categorias.map((categoria, indice) => ({
+    dataset: { categoria },
+    hidden: false,
+    offsetLeft: indice * 100,
+    getBoundingClientRect() { return { left: this.offsetLeft - lista.scrollLeft }; }
+  }));
+  const botoesFiltro = ["todos", "cafes", "gelados", "sobremesas"].map((filtro) => ({
+    dataset: { filtro },
+    attributes: {},
+    classList: { toggle() {} },
+    setAttribute(nome, valor) { this.attributes[nome] = valor; },
+    closest() { return this; }
+  }));
+  const filtros = {
+    hidden: true,
+    eventos: {},
+    contains(botao) { return botoesFiltro.includes(botao); },
+    querySelectorAll() { return botoesFiltro; },
+    addEventListener(evento, callback) { this.eventos[evento] = callback; }
+  };
+  const criarControle = () => ({
+    disabled: false,
+    eventos: {},
+    addEventListener(evento, callback) { this.eventos[evento] = callback; }
+  });
+  const anterior = criarControle();
+  const proximo = criarControle();
+  const controles = { hidden: true };
+  const classesAdicionadas = [];
+  const carrossel = { classList: { add(classe) { classesAdicionadas.push(classe); } } };
+  const resultado = { hidden: true, textContent: "" };
+  const seletores = {
+    ".filtros-cardapio": filtros,
+    ".resultado-cardapio": resultado,
+    ".carrossel-cardapio": carrossel,
+    ".itens-cardapio": lista,
+    ".controles-carrossel": controles,
+    ".controle-anterior": anterior,
+    ".controle-proximo": proximo
+  };
+  const document = {
+    querySelector(seletor) { return seletores[seletor] ?? null; },
+    querySelectorAll(seletor) {
+      return seletor === ".itens-cardapio article" ? produtos : [];
+    }
+  };
+
+  runInNewContext(js, { document, Date });
+  assert.deepEqual(classesAdicionadas, ["carrossel-ativo"]);
+  assert.equal(controles.hidden, false);
+  assert.equal(anterior.disabled, true);
+  assert.equal(proximo.disabled, false);
+
+  proximo.eventos.click();
+  assert.equal(lista.scrollLeft, 100);
+  assert.equal(anterior.disabled, false);
+
+  const filtroCafes = botoesFiltro[1];
+  filtros.eventos.click({ target: filtroCafes });
+  assert.equal(produtos.filter((produto) => !produto.hidden).length, 2);
+  assert.equal(resultado.textContent, "2 produtos exibidos.");
+  assert.equal(lista.scrollLeft, 0);
+  assert.equal(anterior.disabled, true);
+
+  proximo.eventos.click();
+  assert.equal(lista.scrollLeft, 100);
+  assert.equal(proximo.disabled, true);
 });
