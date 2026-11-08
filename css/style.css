@@ -1,0 +1,169 @@
+:root {
+  --cor-fundo: #fffaf3;
+  --cor-superficie: #f3e7d3;
+  --cor-texto: #35271f;
+  --cor-destaque: #70452e;
+  --cor-destaque-escura: #4c2f20;
+  --largura-conteudo: 960px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--cor-destaque);
+}
+
+.container {
+  width: min(100% - 2rem, var(--largura-conteudo));
+  margin-inline: auto;
+}
+
+.cabecalho {
+  padding: 1rem 0;
+  background-color: var(--cor-superficie);
+  border-bottom: 1px solid #dcc6a5;
+}
+
+.cabecalho .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.marca {
+  color: var(--cor-destaque-escura);
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.menu {
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu a {
+  color: var(--cor-texto);
+  text-decoration: none;
+}
+
+.menu a:hover,
+.menu a:focus-visible {
+  text-decoration: underline;
+}
+
+section {
+  padding: 4rem 0;
+  scroll-margin-top: 1rem;
+}
+
+.destaque {
+  padding-block: 5rem;
+  background-color: var(--cor-destaque);
+  color: #ffffff;
+}
+
+.destaque h1 {
+  max-width: 650px;
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  line-height: 1.15;
+}
+
+.destaque p:not(.chamada) {
+  max-width: 650px;
+}
+
+.chamada {
+  margin: 0 0 0.5rem;
+  font-weight: bold;
+}
+
+.botao {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+  color: var(--cor-destaque-escura);
+  background-color: #ffffff;
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+h2 {
+  margin-top: 0;
+  color: var(--cor-destaque-escura);
+  font-size: 2rem;
+}
+
+.itens-cardapio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.itens-cardapio article {
+  padding: 1.25rem;
+  background-color: #ffffff;
+  border: 1px solid #e4d6c2;
+  border-radius: 4px;
+}
+
+.itens-cardapio h3 {
+  margin-top: 0;
+}
+
+.secao-alternativa {
+  background-color: var(--cor-superficie);
+}
+
+address {
+  font-style: normal;
+}
+
+footer {
+  padding: 1.5rem 0;
+  color: #ffffff;
+  background-color: var(--cor-destaque-escura);
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .cabecalho .container,
+  .menu {
+    justify-content: center;
+  }
+
+  .menu {
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .itens-cardapio {
+    grid-template-columns: 1fr;
+  }
+}
