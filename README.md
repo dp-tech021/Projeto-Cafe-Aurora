@@ -21,6 +21,8 @@ Projeto-Cafe-Aurora/
 │   └── IMAGES.md
 ├── docs/
 │   └── HOMOLOGACAO.md
+├── MANIFESTO.json
+├── MAPA_IMAGENS.md
 ├── package.json
 ├── package-lock.json
 ├── index.html
@@ -35,7 +37,8 @@ Projeto-Cafe-Aurora/
 - `assets/images/`: fotografias locais otimizadas no formato WebP.
 - `assets/IMAGES.md`: créditos, origem e licença de cada fotografia.
 - `css/style.css`: identidade visual, layout responsivo e estados de interação.
-- `js/script.js`: filtros do cardápio e atualização automática do ano do rodapé.
+- `MANIFESTO.json` e `MAPA_IMAGENS.md`: origem e associação das novas fotos.
+- `js/script.js`: carrossel, galerias, filtros e atualização do ano do rodapé.
 
 ## Como abrir localmente
 
@@ -58,8 +61,8 @@ Abra a URL exibida no terminal (normalmente `http://localhost:5173`). Como o Jav
 - A paleta usa tons de café, creme, bege e verde-escuro. As cores, os
   espaçamentos, os raios e as sombras ficam centralizados em variáveis CSS para
   manter consistência e facilitar futuras alterações.
-- Flexbox organiza o cabeçalho e a navegação, enquanto CSS Grid distribui os
-  cards do cardápio e o conteúdo da seção de contato em telas maiores.
+- Flexbox organiza o cabeçalho, a navegação e o carrossel, enquanto CSS Grid
+  mantém a grade do cardápio sem JavaScript e distribui a seção de contato.
 - Os títulos usam uma pilha de fontes serifadas do sistema e o texto usa fontes
   sem serifa, sem baixar arquivos ou depender de serviços externos.
 - Links possuem foco visível e a página oferece um atalho “Pular para o
@@ -73,31 +76,60 @@ Abra a URL exibida no terminal (normalmente `http://localhost:5173`). Como o Jav
 
 ## Imagens
 
-As oito fotografias são recursos locais em WebP e têm finalidade meramente
-ilustrativa. Elas foram redimensionadas e comprimidas para reduzir o tempo de
-carregamento, sem depender de servidores externos. As imagens abaixo da dobra
-usam carregamento tardio; a imagem principal é priorizada por fazer parte do
-conteúdo inicial da página.
+As oito fotografias originais e as 12 imagens complementares são recursos
+locais em WebP e têm finalidade meramente ilustrativa, sem depender de CDN ou
+servidores externos. As imagens abaixo da dobra usam carregamento tardio; cada
+galeria começa apenas com a foto original e carrega a foto selecionada sob
+demanda. Depois de uma interação, a próxima foto é pré-carregada quando existe.
 
 As fontes, autores, links originais e condições de uso estão registrados em
-[`assets/IMAGES.md`](assets/IMAGES.md). As fotografias não representam um
-estabelecimento, produtos ou instalações reais do Café Aurora, que é fictício.
+[`assets/IMAGES.md`](assets/IMAGES.md). As 12 fotos complementares são imagens
+geradas por IA e estão documentadas separadamente, sem atribuição de licença
+Pexels. Nenhuma imagem representa um produto ou estabelecimento real.
 
-## Filtros do cardápio
+## Carrossel, galerias e filtros do cardápio
 
 O cardápio contém seis produtos demonstrativos distribuídos entre cafés,
 bebidas geladas e sobremesas. Os botões **Todos**, **Cafés**, **Gelados** e
 **Sobremesas** filtram os cards no navegador, sem recarregar a página.
 
+Com JavaScript disponível, os seis produtos formam um carrossel horizontal com
+rolagem nativa, `scroll-snap` e botões **Anterior** e **Próximo**. Cada comando
+avança um produto; as setas ficam desabilitadas nos extremos. O layout mostra
+um card no celular, até dois no tablet e até três no desktop e também aceita o
+gesto horizontal em telas sensíveis ao toque.
+
+Cada produto possui uma galeria independente de três fotos, limitada por código
+a no máximo cinco. Seus botões circulares navegam apenas as fotos daquele card,
+mostram a posição atual e não alteram o carrossel ou outra galeria. O quadro tem
+proporção estável e usa `object-fit: contain` e `object-position: center` para
+exibir a foto inteira, sem deformação ou corte.
+
 O JavaScript identifica cada produto pelo atributo `data-categoria`, alterna o
 atributo `hidden` dos cards e atualiza `aria-pressed` para comunicar qual botão
 está ativo. Uma região com `aria-live` também informa quantos produtos estão
-visíveis após cada seleção. Os eventos ficam centralizados no grupo de filtros
-para evitar repetição de código.
+visíveis após cada seleção. Ao trocar de categoria, o carrossel retorna ao
+primeiro produto e recalcula os estados das setas; cards ocultos não participam
+do espaço nem dos cálculos de navegação.
 
-Os seis produtos fazem parte do HTML. Os controles de filtro começam ocultos e
-só aparecem depois que o JavaScript é inicializado; assim, se o script não
-carregar, o cardápio completo continua disponível e legível.
+Os seis produtos e suas primeiras fotos fazem parte do HTML. Filtros, setas do
+carrossel e controles das galerias começam ocultos e só aparecem após o
+JavaScript inicializar. Sem o script, o cardápio completo permanece disponível
+em uma grade responsiva, com uma foto, nome, preço e descrição por produto.
+
+## Como testar o cardápio
+
+1. Execute `npm ci`, `npm test` e `npm run build`.
+2. Inicie com `npm run dev` e abra a URL indicada pelo Vite.
+3. Confira o layout e a ausência de rolagem horizontal da página em 375, 768 e
+   1440 px; devem aparecer respectivamente um, até dois e até três cards.
+4. Navegue o carrossel e cada galeria até os extremos e confirme os estados
+   desabilitados, indicadores e independência entre controles.
+5. Teste as categorias e as contagens 6, 2, 2 e 2; toda troca deve reposicionar
+   o carrossel no início.
+6. Use Tab, Enter e Espaço, ative `prefers-reduced-motion`, teste o gesto de
+   deslizar, confira Console/Network e desabilite JavaScript para validar a
+   alternativa progressiva.
 
 ## Aviso
 
