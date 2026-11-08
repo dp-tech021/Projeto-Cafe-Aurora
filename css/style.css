@@ -7,6 +7,8 @@
   --cor-bege-300: #dfc9aa;
   --cor-verde-900: #183a2f;
   --cor-verde-700: #2e5a4c;
+  --cor-dp-azul: #0758a1;
+  --cor-dp-ciano: #08b8dd;
   --cor-texto: #33251e;
   --cor-texto-suave: #65554b;
   --cor-branco: #ffffff;
@@ -572,13 +574,97 @@ footer {
   color: #eadfd2;
   background-color: var(--cor-cafe-950);
   border-top: 0.3rem solid var(--cor-verde-700);
+}
+
+.rodape-conteudo {
+  display: grid;
+  gap: var(--espaco-4);
+}
+
+.assinatura-dp {
+  display: grid;
+  gap: var(--espaco-4);
+  align-items: center;
+  padding: var(--espaco-4);
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgb(7 88 161 / 16%), rgb(8 184 221 / 6%)),
+    rgb(255 255 255 / 3%);
+  border: 1px solid rgb(8 184 221 / 42%);
+  border-radius: var(--raio-medio);
+  box-shadow: inset 0.25rem 0 0 var(--cor-dp-azul);
+}
+
+.assinatura-dp-logo {
+  display: grid;
+  place-items: center;
+}
+
+.assinatura-dp-logo img {
+  display: block;
+  width: min(11rem, 58vw);
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--raio-pequeno);
+}
+
+.assinatura-dp-informacoes {
+  min-width: 0;
   text-align: center;
 }
 
-footer p {
+.titulo-assinatura {
+  margin: 0 0 var(--espaco-1);
+  color: var(--cor-branco);
+  font-size: clamp(1.45rem, 6vw, 2rem);
+  letter-spacing: -0.015em;
+}
+
+.titulo-assinatura::after {
+  display: none;
+}
+
+.assinatura-dp p {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+.assinatura-dp .assinatura-desenvolvimento {
+  margin-bottom: var(--espaco-2);
+  color: var(--cor-dp-ciano);
+  font-weight: 700;
+}
+
+.contato-dp {
+  display: grid;
+  gap: 0.2rem;
+  margin-top: var(--espaco-3);
+  overflow-wrap: anywhere;
+  color: var(--cor-branco);
+  font-style: normal;
+}
+
+.assinatura-dp .aviso-contatos-ficticios {
+  margin-top: var(--espaco-2);
+  color: #c9d8dc;
+  font-size: 0.8rem;
+}
+
+.assinatura-dp .credito-desenvolvimento {
+  margin-top: var(--espaco-3);
+  padding-top: var(--espaco-2);
+  color: #a8edf8;
+  border-top: 1px solid rgb(8 184 221 / 28%);
+  font-weight: 700;
+}
+
+.direitos-cafe-aurora {
   max-width: 48rem;
   margin: 0 auto;
+  padding-top: var(--espaco-3);
+  border-top: 1px solid rgb(255 255 255 / 12%);
   font-size: 0.9rem;
+  text-align: center;
 }
 
 @media (min-width: 40rem) {
@@ -603,6 +689,24 @@ footer p {
   .itens-cardapio {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--espaco-4);
+  }
+
+  .assinatura-dp {
+    grid-template-columns: minmax(9rem, 12rem) minmax(0, 1fr);
+    gap: var(--espaco-5);
+    padding: var(--espaco-5);
+  }
+
+  .assinatura-dp-logo img {
+    width: 100%;
+  }
+
+  .assinatura-dp-informacoes {
+    text-align: left;
+  }
+
+  .assinatura-dp p {
+    margin-inline: 0;
   }
 
   .carrossel-cardapio.carrossel-ativo .itens-cardapio {
