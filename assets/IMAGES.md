@@ -17,3 +17,28 @@ imagens não retratam produtos ou instalações reais da marca.
 
 Consulte a [licença oficial do Pexels](https://www.pexels.com/pt-br/licenca/)
 antes de reutilizar os arquivos fora deste projeto.
+
+## Imagens complementares geradas por IA
+
+As 12 imagens abaixo foram geradas por IA para este projeto em 08/11/2026. São
+ilustrações fictícias, não representam produtos reais e **não** estão cobertas
+pela Licença Pexels atribuída às fotografias da tabela anterior.
+
+| Arquivo | Galeria |
+| --- | --- |
+| `images/cafe-coado-02.webp` | Café coado — foto 2 |
+| `images/cafe-coado-03.webp` | Café coado — foto 3 |
+| `images/cappuccino-02.webp` | Cappuccino Aurora — foto 2 |
+| `images/cappuccino-03.webp` | Cappuccino Aurora — foto 3 |
+| `images/cold-brew-02.webp` | Cold brew cítrico — foto 2 |
+| `images/cold-brew-03.webp` | Cold brew cítrico — foto 3 |
+| `images/chocolate-gelado-02.webp` | Chocolate gelado — foto 2 |
+| `images/chocolate-gelado-03.webp` | Chocolate gelado — foto 3 |
+| `images/bolo-cenoura-02.webp` | Bolo de cenoura — foto 2 |
+| `images/bolo-cenoura-03.webp` | Bolo de cenoura — foto 3 |
+| `images/torta-cacau-02.webp` | Torta de cacau — foto 2 |
+| `images/torta-cacau-03.webp` | Torta de cacau — foto 3 |
+
+O mapeamento completo e a declaração de origem recebidos com os arquivos estão
+preservados em [`../MAPA_IMAGENS.md`](../MAPA_IMAGENS.md) e
+[`../MANIFESTO.json`](../MANIFESTO.json).

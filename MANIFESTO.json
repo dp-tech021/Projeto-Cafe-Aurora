@@ -1,0 +1,67 @@
+{
+  "projeto": "Projeto-Cafe-Aurora",
+  "origem_novas_imagens": "Imagens ilustrativas geradas por IA para este projeto em 2026-11-08. Não representam fotos de produtos reais.",
+  "format": "WebP",
+  "produtos": [
+    {
+      "produto": "Café coado",
+      "categoria": "cafes",
+      "imagens": [
+        "assets/images/cafe-coado.webp",
+        "assets/images/cafe-coado-02.webp",
+        "assets/images/cafe-coado-03.webp"
+      ],
+      "total": 3
+    },
+    {
+      "produto": "Cappuccino Aurora",
+      "categoria": "cafes",
+      "imagens": [
+        "assets/images/cappuccino.webp",
+        "assets/images/cappuccino-02.webp",
+        "assets/images/cappuccino-03.webp"
+      ],
+      "total": 3
+    },
+    {
+      "produto": "Cold brew cítrico",
+      "categoria": "gelados",
+      "imagens": [
+        "assets/images/cold-brew.webp",
+        "assets/images/cold-brew-02.webp",
+        "assets/images/cold-brew-03.webp"
+      ],
+      "total": 3
+    },
+    {
+      "produto": "Chocolate gelado",
+      "categoria": "gelados",
+      "imagens": [
+        "assets/images/chocolate-gelado.webp",
+        "assets/images/chocolate-gelado-02.webp",
+        "assets/images/chocolate-gelado-03.webp"
+      ],
+      "total": 3
+    },
+    {
+      "produto": "Bolo de cenoura",
+      "categoria": "sobremesas",
+      "imagens": [
+        "assets/images/bolo-cenoura.webp",
+        "assets/images/bolo-cenoura-02.webp",
+        "assets/images/bolo-cenoura-03.webp"
+      ],
+      "total": 3
+    },
+    {
+      "produto": "Torta de cacau",
+      "categoria": "sobremesas",
+      "imagens": [
+        "assets/images/torta-cacau.webp",
+        "assets/images/torta-cacau-02.webp",
+        "assets/images/torta-cacau-03.webp"
+      ],
+      "total": 3
+    }
+  ]
+}
