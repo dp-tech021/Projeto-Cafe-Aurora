@@ -32,12 +32,16 @@ Projeto-Cafe-Aurora/
 
 ## Como abrir localmente
 
-1. Baixe ou clone este repositório.
-2. Abra a pasta do projeto.
-3. Abra o arquivo `index.html` em um navegador moderno.
+Instale Node.js 20.19+ ou 22.12+, npm e Git. Em um terminal:
 
-Não é necessário instalar dependências ou executar um servidor, pois o projeto
-utiliza somente recursos nativos do navegador.
+```bash
+git clone https://github.com/dp-tech021/Projeto-Cafe-Aurora.git
+cd Projeto-Cafe-Aurora
+npm install
+npm run dev
+```
+
+Abra a URL exibida no terminal (normalmente `http://localhost:5173`). Como o JavaScript é carregado como módulo, não use `file://` para conferir a versão com Vite.
 
 ## Decisões de design e responsividade
 
@@ -92,3 +96,18 @@ carregar, o cardápio completo continua disponível e legível.
 
 O Café Aurora é um projeto fictício criado exclusivamente para fins de estudo e
 portfólio. Os nomes, o endereço e os dados de contato são demonstrativos.
+
+
+## Ferramentas de desenvolvimento e colaboração
+
+O site continua em HTML, CSS e JavaScript puro; **Vite 8.3.6** serve apenas para desenvolver e gerar a versão estática. Não há React ou TypeScript. Não são necessários serviços pagos.
+
+```bash
+npm test        # testes de navegação, imagens e filtros
+npm run build   # gera a pasta dist/ com os arquivos para publicação
+npm run preview # abre a versão de produção localmente
+```
+
+O build utiliza caminhos relativos para funcionar em hospedagem sob subdiretórios, como GitHub Pages. As verificações de teste e build também são executadas pelo workflow em `.github/workflows/validate.yml` quando habilitado. Consultem `AGENTS.md` para o fluxo em dupla.
+
+**Pendência:** esta etapa ainda não possui `package-lock.json`, pois a instalação npm não pôde ser executada no ambiente de preparação. O CI usa `npm install`; façam uma instalação em uma máquina conectada e versionem o lockfile em um PR posterior. Até lá, as dependências transitivas não estão totalmente fixadas.

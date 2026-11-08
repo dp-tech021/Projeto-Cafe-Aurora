@@ -1,0 +1,32 @@
+name: Validar site
+
+on:
+  push:
+    branches:
+      - "chore/**"
+      - "feat/**"
+      - "fix/**"
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Instalar dependências
+        run: npm install --no-audit --no-fund
+      - name: Testes
+        run: npm test
+      - name: Build
+        run: npm run build
+      - name: Verificar saída
+        run: test -f dist/index.html
