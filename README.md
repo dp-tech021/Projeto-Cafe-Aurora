@@ -13,6 +13,9 @@ demonstrativos.
 
 ```text
 Projeto-Cafe-Aurora/
+├── assets/
+│   ├── images/
+│   └── IMAGES.md
 ├── index.html
 ├── css/
 │   └── style.css
@@ -22,6 +25,8 @@ Projeto-Cafe-Aurora/
 ```
 
 - `index.html`: estrutura e conteúdo principal do site.
+- `assets/images/`: fotografias locais otimizadas no formato WebP.
+- `assets/IMAGES.md`: créditos, origem e licença de cada fotografia.
 - `css/style.css`: identidade visual, layout responsivo e estados de interação.
 - `js/script.js`: filtros do cardápio e atualização automática do ano do rodapé.
 
@@ -52,6 +57,20 @@ utiliza somente recursos nativos do navegador.
   que o usuário não solicitou redução de movimento.
 - Elementos flexíveis, quebras de texto e colunas com largura mínima zero
   evitam rolagem horizontal em telas estreitas.
+- O hero e a seção Sobre usam duas colunas apenas em telas amplas. Em telas
+  menores, texto e fotografia são empilhados para preservar a leitura.
+
+## Imagens
+
+As oito fotografias são recursos locais em WebP e têm finalidade meramente
+ilustrativa. Elas foram redimensionadas e comprimidas para reduzir o tempo de
+carregamento, sem depender de servidores externos. As imagens abaixo da dobra
+usam carregamento tardio; a imagem principal é priorizada por fazer parte do
+conteúdo inicial da página.
+
+As fontes, autores, links originais e condições de uso estão registrados em
+[`assets/IMAGES.md`](assets/IMAGES.md). As fotografias não representam um
+estabelecimento, produtos ou instalações reais do Café Aurora, que é fictício.
 
 ## Filtros do cardápio
 
