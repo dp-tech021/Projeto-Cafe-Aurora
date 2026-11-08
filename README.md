@@ -1,40 +1,61 @@
 # Café Aurora
 
-Site demonstrativo de uma cafeteria fictícia, desenvolvido como projeto de
-portfólio com HTML5, CSS3 e JavaScript puro.
+Site demonstrativo de uma cafeteria fictícia, desenvolvido como projeto de portfólio com HTML5, CSS3 e JavaScript puro. O Vite é usado somente como servidor de desenvolvimento e ferramenta de build. Não há React nem TypeScript nesta etapa porque o site já existia nessa stack.
 
-## Objetivo
+## Pré-requisitos
 
-Apresentar uma página institucional simples e semântica com informações sobre
-a cafeteria, sugestões de cardápio, uma breve apresentação e dados de contato
-demonstrativos.
+- Node.js 20.19+ ou 22.12+ (recomendado Node 22 atual).
+- npm (distribuído com o Node.js).
+- Git.
 
-## Estrutura do projeto
+## Instalação e execução
+
+```bash
+git clone https://github.com/dp-tech021/Projeto-Cafe-Aurora.git
+cd Projeto-Cafe-Aurora
+npm install
+npm run dev
+```
+
+Abra o endereço local indicado pelo Vite (normalmente `http://localhost:5173`).
+
+## Testes e build
+
+```bash
+npm test
+npm run build
+npm run preview
+```
+
+- `npm test`: verifica a navegação básica e a atualização do ano do rodapé.
+- `npm run build`: gera a versão estática em `dist/`.
+- `npm run preview`: permite conferir localmente a saída de produção.
+- `dist/` e `node_modules/` não devem ser enviados ao Git.
+- Ainda não há lockfile porque não foi possível instalar dependências no ambiente que preparou esta alteração. Execute `npm install` em um ambiente com acesso ao npm, revise e versione o `package-lock.json` em PR antes de substituir `npm install` por `npm ci` na CI.
+
+## Estrutura
 
 ```text
 Projeto-Cafe-Aurora/
-├── index.html
-├── css/
-│   └── style.css
-├── js/
-│   └── script.js
+├── .github/workflows/validate.yml  # Testes e build no GitHub Actions
+├── css/style.css                  # Aparência da página
+├── js/script.js                   # Comportamento simples
+├── tests/site.test.mjs            # Testes automáticos com Node
+├── index.html                     # Estrutura da página
+├── package.json                   # Scripts e Vite
+├── .gitignore                     # Arquivos locais ignorados
+├── AGENTS.md                      # Regras para a dupla e os Codex
 └── README.md
 ```
 
-- `index.html`: estrutura e conteúdo principal do site.
-- `css/style.css`: estilos básicos de apresentação e legibilidade.
-- `js/script.js`: atualização automática do ano exibido no rodapé.
+## Objetivo e conteúdo
 
-## Como abrir localmente
+Página institucional simples com apresentação, cardápio, seção Sobre e contato fictício. As informações da cafeteria são demonstrativas e não há serviço real.
 
-1. Baixe ou clone este repositório.
-2. Abra a pasta do projeto.
-3. Abra o arquivo `index.html` em um navegador moderno.
+## Fluxo de colaboração
 
-Não é necessário instalar dependências ou executar um servidor, pois o projeto
-utiliza somente recursos nativos do navegador.
+Cada desenvolvedor utiliza sua própria branch e sessão Codex. Abrir Pull Request para `main`, solicitar revisão do outro desenvolvedor e verificar testes e build antes de integrar. Consultar [AGENTS.md](AGENTS.md) para regras completas.
 
-## Aviso
+## Próximas evoluções
 
-O Café Aurora é um projeto fictício criado exclusivamente para fins de estudo e
-portfólio. Os nomes, o endereço e os dados de contato são demonstrativos.
+A dupla pode avaliar React + TypeScript futuramente caso haja uma necessidade concreta de componentes interativos e estado complexo. Evitar migrar apenas por preferência tecnológica.
