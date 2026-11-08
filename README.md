@@ -3,6 +3,9 @@
 Site demonstrativo de uma cafeteria fictícia, desenvolvido como projeto de
 portfólio com HTML5, CSS3 e JavaScript puro.
 
+**Versão publicada:** https://dp-tech021.github.io/Projeto-Cafe-Aurora/
+
+
 ## Objetivo
 
 Apresentar uma página institucional simples e semântica com informações sobre
@@ -124,7 +127,7 @@ O arquivo `package-lock.json` foi gerado com npm no GitHub Actions e versionado,
 
 **Para habilitar a publicação**, um administrador deve acessar [Settings → Pages](https://github.com/dp-tech021/Projeto-Cafe-Aurora/settings/pages), selecionar **GitHub Actions** como fonte e conferir as permissões do Actions. Um PR não publica o site automaticamente: o deploy inicia após merge na `main`.
 
-Depois de publicar, confira em [Actions](https://github.com/dp-tech021/Projeto-Cafe-Aurora/actions) a URL real fornecida pelo deploy e inclua-a aqui. Não presuma que a página está no ar antes de verificar.
+O workflow do GitHub Pages [concluiu com sucesso](https://github.com/dp-tech021/Projeto-Cafe-Aurora/actions/runs/42519211564) em 08/11/2026 e informou o endereço público indicado no início deste README. Verifiquem manualmente no navegador se as imagens, links e filtros funcionam na versão publicada.
 
 ## Homologação e colaboração
 
