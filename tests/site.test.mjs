@@ -222,7 +222,7 @@ test("galerias navegam de forma independente, sob demanda e sem ultrapassar limi
     set src(caminho) { preCarregadas.push(caminho); }
   }
   const criarGaleria = (prefixo) => {
-    const imagem = { src: "", alt: "" };
+    const imagem = { src: prefixo === "primeira" ? "https://example.test/Projeto-Cafe-Aurora/assets/primeira-hash.webp" : "", alt: "" };
     const controles = { hidden: true };
     const anterior = { disabled: false, eventos: {}, addEventListener(evento, callback) { this.eventos[evento] = callback; } };
     const proxima = { disabled: false, eventos: {}, addEventListener(evento, callback) { this.eventos[evento] = callback; } };
@@ -254,7 +254,12 @@ test("galerias navegam de forma independente, sob demanda e sem ultrapassar limi
 
   runInNewContext(jsExecutavel, { document, Date, Image: ImagemPreCarregada, URL });
   assert.equal(primeira.elementos[".controles-galeria"].hidden, false);
-  assert.equal(primeira.elementos[".produto-imagem"].src, "primeira-01.webp");
+  // Regressão: o build do Vite troca o src do HTML por uma URL processada.
+  // A inicialização da galeria precisa preservar essa URL, sem criar um 404.
+  assert.equal(
+    primeira.elementos[".produto-imagem"].src,
+    "https://example.test/Projeto-Cafe-Aurora/assets/primeira-hash.webp"
+  );
   assert.equal(primeira.elementos[".indicador-galeria"].textContent, "1 de 3");
   assert.equal(primeira.elementos[".galeria-anterior"].disabled, true);
   assert.equal(preCarregadas.length, 0);
