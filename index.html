@@ -40,19 +40,98 @@
       <section id="cardapio">
         <div class="container">
           <h2>Cardápio</h2>
-          <p>Algumas sugestões demonstrativas da nossa cafeteria:</p>
+          <p>
+            Sabores fictícios pensados para diferentes momentos do seu dia.
+            Valores meramente ilustrativos.
+          </p>
+          <div
+            class="filtros-cardapio"
+            role="group"
+            aria-label="Filtrar produtos por categoria"
+            hidden
+          >
+            <button
+              class="filtro-cardapio ativo"
+              type="button"
+              data-filtro="todos"
+              aria-pressed="true"
+            >
+              Todos
+            </button>
+            <button
+              class="filtro-cardapio"
+              type="button"
+              data-filtro="cafes"
+              aria-pressed="false"
+            >
+              Cafés
+            </button>
+            <button
+              class="filtro-cardapio"
+              type="button"
+              data-filtro="gelados"
+              aria-pressed="false"
+            >
+              Gelados
+            </button>
+            <button
+              class="filtro-cardapio"
+              type="button"
+              data-filtro="sobremesas"
+              aria-pressed="false"
+            >
+              Sobremesas
+            </button>
+          </div>
+          <p class="resultado-cardapio" aria-live="polite" aria-atomic="true" hidden></p>
           <div class="itens-cardapio">
-            <article>
-              <h3>Café coado</h3>
-              <p>Café preparado na hora, com aroma marcante e sabor equilibrado.</p>
+            <article data-categoria="cafes">
+              <div class="produto-cabecalho">
+                <h3>Café coado</h3>
+                <p class="produto-preco">R$ 8,00</p>
+              </div>
+              <p class="produto-categoria">Cafés</p>
+              <p>Grãos de torra média preparados na hora, com sabor equilibrado.</p>
             </article>
-            <article>
-              <h3>Capuccino da casa</h3>
-              <p>Espresso, leite cremoso e um toque suave de canela.</p>
+            <article data-categoria="cafes">
+              <div class="produto-cabecalho">
+                <h3>Cappuccino Aurora</h3>
+                <p class="produto-preco">R$ 14,00</p>
+              </div>
+              <p class="produto-categoria">Cafés</p>
+              <p>Espresso, leite cremoso, cacau e um toque suave de canela.</p>
             </article>
-            <article>
-              <h3>Bolo do dia</h3>
-              <p>Uma fatia de bolo caseiro para acompanhar sua bebida favorita.</p>
+            <article data-categoria="gelados">
+              <div class="produto-cabecalho">
+                <h3>Cold brew cítrico</h3>
+                <p class="produto-preco">R$ 16,00</p>
+              </div>
+              <p class="produto-categoria">Gelados</p>
+              <p>Café extraído a frio com laranja e água com gás.</p>
+            </article>
+            <article data-categoria="gelados">
+              <div class="produto-cabecalho">
+                <h3>Chocolate gelado</h3>
+                <p class="produto-preco">R$ 15,00</p>
+              </div>
+              <p class="produto-categoria">Gelados</p>
+              <p>Bebida cremosa de cacau com leite e gelo.</p>
+            </article>
+            <article data-categoria="sobremesas">
+              <div class="produto-cabecalho">
+                <h3>Bolo de cenoura</h3>
+                <p class="produto-preco">R$ 12,00</p>
+              </div>
+              <p class="produto-categoria">Sobremesas</p>
+              <p>Fatia de bolo macio com cobertura delicada de chocolate.</p>
+            </article>
+            <article data-categoria="sobremesas">
+              <div class="produto-cabecalho">
+                <h3>Torta de cacau</h3>
+                <p class="produto-preco">R$ 14,00</p>
+              </div>
+              <p class="produto-categoria">Sobremesas</p>
+              <p>Fatia de torta cremosa com base crocante e cacau.</p>
             </article>
           </div>
         </div>
