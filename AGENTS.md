@@ -25,12 +25,13 @@
 - Manter textos visíveis em português do Brasil e dados da cafeteria explicitamente fictícios.
 
 ## Verificações antes do PR
-- `npm install` (até existir lockfile; depois usar `npm ci`).
+- `npm ci`: instalação reproduzível a partir do `package-lock.json` versionado.
 - `npm test`: testes básicos.
 - `npm run build`: geração de `dist/` sem erro.
 - `npm run dev`: navegar por Início, Cardápio, Sobre e Contato; conferir mobile e console.
+- Usar `docs/HOMOLOGACAO.md` para os testes manuais em celular, desktop, acessibilidade básica e página publicada.
 - Anotar no PR quais verificações foram de fato executadas e quais ficaram pendentes.
 - Não commitar `node_modules/` ou `dist/`.
 
 ## Critério de conclusão
-PR com resumo, arquivos alterados, evidências de testes, riscos e revisão da outra pessoa. Não modificar `main` sem aprovação.
+PR com resumo, arquivos alterados, evidências de testes, riscos e revisão da outra pessoa. Não modificar `main` sem aprovação. O deploy no GitHub Pages exige integração na `main` e habilitação do Pages em Settings.

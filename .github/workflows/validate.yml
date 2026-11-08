@@ -3,17 +3,24 @@ name: Validar site
 on:
   push:
     branches:
+      - main
       - "chore/**"
       - "feat/**"
       - "fix/**"
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: validar-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-and-test:
+    name: build-and-test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,11 +29,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Instalar dependências
-        run: npm install --no-audit --no-fund
+          cache: npm
+      - name: Instalar dependências reproduzíveis
+        run: npm ci --no-audit --no-fund
       - name: Testes
         run: npm test
       - name: Build
         run: npm run build
       - name: Verificar saída
-        run: test -f dist/index.html
+        run: |
+          test -f dist/index.html
+          grep -q "Café Aurora" dist/index.html
