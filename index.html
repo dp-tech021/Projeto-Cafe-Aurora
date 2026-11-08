@@ -95,17 +95,59 @@
             </button>
           </div>
           <p class="resultado-cardapio" aria-live="polite" aria-atomic="true" hidden></p>
-          <div class="itens-cardapio">
-            <article data-categoria="cafes">
-              <img
-                class="produto-imagem"
-                src="assets/images/cafe-coado.webp"
-                alt="Café sendo preparado em filtro sobre uma jarra"
-                width="720"
-                height="540"
-                loading="lazy"
-                decoding="async"
+          <div
+            class="carrossel-cardapio"
+            role="region"
+            aria-roledescription="carrossel"
+            aria-label="Produtos do cardápio"
+          >
+            <div class="controles-carrossel" hidden>
+              <button
+                class="controle-carrossel controle-anterior"
+                type="button"
+                aria-label="Exibir produto anterior"
+                aria-controls="lista-cardapio"
               >
+                <span aria-hidden="true">←</span>
+                Anterior
+              </button>
+              <button
+                class="controle-carrossel controle-proximo"
+                type="button"
+                aria-label="Exibir próximo produto"
+                aria-controls="lista-cardapio"
+              >
+                Próximo
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+            <div class="itens-cardapio" id="lista-cardapio" role="list">
+            <article data-categoria="cafes" role="listitem">
+              <div
+                class="galeria-produto"
+                role="group"
+                data-imagens="assets/images/cafe-coado.webp|assets/images/cafe-coado-02.webp|assets/images/cafe-coado-03.webp"
+                data-alts="Café sendo preparado em filtro sobre uma jarra|Xícara de café coado ao lado de uma jarra com filtro sobre mesa de madeira|Xícara de café coado diante de uma jarra e um filtro de papel"
+                aria-label="Fotos de Café coado"
+              >
+                <div class="galeria-quadro">
+                  <img
+                    id="foto-cafe-coado"
+                    class="produto-imagem"
+                    src="assets/images/cafe-coado.webp"
+                    alt="Café sendo preparado em filtro sobre uma jarra"
+                    width="720"
+                    height="540"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </div>
+                <div class="controles-galeria" hidden>
+                  <button class="controle-galeria galeria-anterior" type="button" aria-label="Foto anterior de Café coado" aria-controls="foto-cafe-coado">←</button>
+                  <span class="indicador-galeria" aria-live="polite" aria-atomic="true">1 de 3</span>
+                  <button class="controle-galeria galeria-proxima" type="button" aria-label="Próxima foto de Café coado" aria-controls="foto-cafe-coado">→</button>
+                </div>
+              </div>
               <div class="produto-conteudo">
                 <div class="produto-cabecalho">
                   <h3>Café coado</h3>
@@ -115,16 +157,23 @@
                 <p>Grãos de torra média preparados na hora, com sabor equilibrado.</p>
               </div>
             </article>
-            <article data-categoria="cafes">
-              <img
-                class="produto-imagem"
-                src="assets/images/cappuccino.webp"
-                alt="Xícara de cappuccino com desenho feito na espuma"
-                width="720"
-                height="540"
-                loading="lazy"
-                decoding="async"
+            <article data-categoria="cafes" role="listitem">
+              <div
+                class="galeria-produto"
+                role="group"
+                data-imagens="assets/images/cappuccino.webp|assets/images/cappuccino-02.webp|assets/images/cappuccino-03.webp"
+                data-alts="Xícara de cappuccino com desenho feito na espuma|Xícara de cappuccino com arte de folha na espuma sobre mesa de madeira|Xícara de cappuccino com desenho de folhas na espuma, vista de cima"
+                aria-label="Fotos de Cappuccino Aurora"
               >
+                <div class="galeria-quadro">
+                  <img id="foto-cappuccino" class="produto-imagem" src="assets/images/cappuccino.webp" alt="Xícara de cappuccino com desenho feito na espuma" width="720" height="540" loading="lazy" decoding="async">
+                </div>
+                <div class="controles-galeria" hidden>
+                  <button class="controle-galeria galeria-anterior" type="button" aria-label="Foto anterior de Cappuccino Aurora" aria-controls="foto-cappuccino">←</button>
+                  <span class="indicador-galeria" aria-live="polite" aria-atomic="true">1 de 3</span>
+                  <button class="controle-galeria galeria-proxima" type="button" aria-label="Próxima foto de Cappuccino Aurora" aria-controls="foto-cappuccino">→</button>
+                </div>
+              </div>
               <div class="produto-conteudo">
                 <div class="produto-cabecalho">
                   <h3>Cappuccino Aurora</h3>
@@ -134,16 +183,23 @@
                 <p>Espresso, leite cremoso, cacau e um toque suave de canela.</p>
               </div>
             </article>
-            <article data-categoria="gelados">
-              <img
-                class="produto-imagem"
-                src="assets/images/cold-brew.webp"
-                alt="Bebida de café gelada com uma rodela de limão"
-                width="720"
-                height="540"
-                loading="lazy"
-                decoding="async"
+            <article data-categoria="gelados" role="listitem">
+              <div
+                class="galeria-produto"
+                role="group"
+                data-imagens="assets/images/cold-brew.webp|assets/images/cold-brew-02.webp|assets/images/cold-brew-03.webp"
+                data-alts="Bebida de café gelada com uma rodela de limão|Copo de cold brew com gelo, casca e pedaços de laranja sobre mesa de madeira|Copo de cold brew com gelo e uma rodela de laranja"
+                aria-label="Fotos de Cold brew cítrico"
               >
+                <div class="galeria-quadro">
+                  <img id="foto-cold-brew" class="produto-imagem" src="assets/images/cold-brew.webp" alt="Bebida de café gelada com uma rodela de limão" width="720" height="540" loading="lazy" decoding="async">
+                </div>
+                <div class="controles-galeria" hidden>
+                  <button class="controle-galeria galeria-anterior" type="button" aria-label="Foto anterior de Cold brew cítrico" aria-controls="foto-cold-brew">←</button>
+                  <span class="indicador-galeria" aria-live="polite" aria-atomic="true">1 de 3</span>
+                  <button class="controle-galeria galeria-proxima" type="button" aria-label="Próxima foto de Cold brew cítrico" aria-controls="foto-cold-brew">→</button>
+                </div>
+              </div>
               <div class="produto-conteudo">
                 <div class="produto-cabecalho">
                   <h3>Cold brew cítrico</h3>
@@ -153,16 +209,23 @@
                 <p>Café extraído a frio com laranja e água com gás.</p>
               </div>
             </article>
-            <article data-categoria="gelados">
-              <img
-                class="produto-imagem"
-                src="assets/images/chocolate-gelado.webp"
-                alt="Bebida gelada de chocolate com cobertura cremosa"
-                width="720"
-                height="540"
-                loading="lazy"
-                decoding="async"
+            <article data-categoria="gelados" role="listitem">
+              <div
+                class="galeria-produto"
+                role="group"
+                data-imagens="assets/images/chocolate-gelado.webp|assets/images/chocolate-gelado-02.webp|assets/images/chocolate-gelado-03.webp"
+                data-alts="Bebida gelada de chocolate com cobertura cremosa|Copo de chocolate gelado com chantili, calda e raspas de chocolate|Copo alto de chocolate gelado com chantili, calda e raspas de chocolate"
+                aria-label="Fotos de Chocolate gelado"
               >
+                <div class="galeria-quadro">
+                  <img id="foto-chocolate-gelado" class="produto-imagem" src="assets/images/chocolate-gelado.webp" alt="Bebida gelada de chocolate com cobertura cremosa" width="720" height="540" loading="lazy" decoding="async">
+                </div>
+                <div class="controles-galeria" hidden>
+                  <button class="controle-galeria galeria-anterior" type="button" aria-label="Foto anterior de Chocolate gelado" aria-controls="foto-chocolate-gelado">←</button>
+                  <span class="indicador-galeria" aria-live="polite" aria-atomic="true">1 de 3</span>
+                  <button class="controle-galeria galeria-proxima" type="button" aria-label="Próxima foto de Chocolate gelado" aria-controls="foto-chocolate-gelado">→</button>
+                </div>
+              </div>
               <div class="produto-conteudo">
                 <div class="produto-cabecalho">
                   <h3>Chocolate gelado</h3>
@@ -172,16 +235,23 @@
                 <p>Bebida cremosa de cacau com leite e gelo.</p>
               </div>
             </article>
-            <article data-categoria="sobremesas">
-              <img
-                class="produto-imagem"
-                src="assets/images/bolo-cenoura.webp"
-                alt="Bolo de cenoura com cobertura de chocolate"
-                width="720"
-                height="540"
-                loading="lazy"
-                decoding="async"
+            <article data-categoria="sobremesas" role="listitem">
+              <div
+                class="galeria-produto"
+                role="group"
+                data-imagens="assets/images/bolo-cenoura.webp|assets/images/bolo-cenoura-02.webp|assets/images/bolo-cenoura-03.webp"
+                data-alts="Bolo de cenoura com cobertura de chocolate|Fatia de bolo de cenoura com cobertura e raspas de chocolate|Fatia alta de bolo de cenoura com cobertura de chocolate escorrendo"
+                aria-label="Fotos de Bolo de cenoura"
               >
+                <div class="galeria-quadro">
+                  <img id="foto-bolo-cenoura" class="produto-imagem" src="assets/images/bolo-cenoura.webp" alt="Bolo de cenoura com cobertura de chocolate" width="720" height="540" loading="lazy" decoding="async">
+                </div>
+                <div class="controles-galeria" hidden>
+                  <button class="controle-galeria galeria-anterior" type="button" aria-label="Foto anterior de Bolo de cenoura" aria-controls="foto-bolo-cenoura">←</button>
+                  <span class="indicador-galeria" aria-live="polite" aria-atomic="true">1 de 3</span>
+                  <button class="controle-galeria galeria-proxima" type="button" aria-label="Próxima foto de Bolo de cenoura" aria-controls="foto-bolo-cenoura">→</button>
+                </div>
+              </div>
               <div class="produto-conteudo">
                 <div class="produto-cabecalho">
                   <h3>Bolo de cenoura</h3>
@@ -191,16 +261,23 @@
                 <p>Fatia de bolo macio com cobertura delicada de chocolate.</p>
               </div>
             </article>
-            <article data-categoria="sobremesas">
-              <img
-                class="produto-imagem"
-                src="assets/images/torta-cacau.webp"
-                alt="Fatia de bolo de chocolate servida em um prato"
-                width="720"
-                height="540"
-                loading="lazy"
-                decoding="async"
+            <article data-categoria="sobremesas" role="listitem">
+              <div
+                class="galeria-produto"
+                role="group"
+                data-imagens="assets/images/torta-cacau.webp|assets/images/torta-cacau-02.webp|assets/images/torta-cacau-03.webp"
+                data-alts="Fatia de bolo de chocolate servida em um prato|Fatia de torta de cacau com base crocante e raspas de chocolate|Fatia de torta de cacau polvilhada com cacau e decorada com raspas"
+                aria-label="Fotos de Torta de cacau"
               >
+                <div class="galeria-quadro">
+                  <img id="foto-torta-cacau" class="produto-imagem" src="assets/images/torta-cacau.webp" alt="Fatia de bolo de chocolate servida em um prato" width="720" height="540" loading="lazy" decoding="async">
+                </div>
+                <div class="controles-galeria" hidden>
+                  <button class="controle-galeria galeria-anterior" type="button" aria-label="Foto anterior de Torta de cacau" aria-controls="foto-torta-cacau">←</button>
+                  <span class="indicador-galeria" aria-live="polite" aria-atomic="true">1 de 3</span>
+                  <button class="controle-galeria galeria-proxima" type="button" aria-label="Próxima foto de Torta de cacau" aria-controls="foto-torta-cacau">→</button>
+                </div>
+              </div>
               <div class="produto-conteudo">
                 <div class="produto-cabecalho">
                   <h3>Torta de cacau</h3>
@@ -210,6 +287,7 @@
                 <p>Fatia de torta cremosa com base crocante e cacau.</p>
               </div>
             </article>
+            </div>
           </div>
         </div>
       </section>
